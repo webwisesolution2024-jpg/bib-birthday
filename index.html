@@ -1029,46 +1029,27 @@
             const btn = document.getElementById('musicToggle');
             
             if (audio.paused) {
-                audio.play().catch(err => {
-                    console.log('Playback error:', err);
-                    console.log('Audio src:', audio.src);
-                });
-                btn.textContent = '🔊 Music On';
-                btn.classList.add('playing');
-            } else {
-                audio.pause();
-                btn.textContent = '🔇 Music Off';
-                btn.classList.remove('playing');
-            }
-        }
-
-        // Try to auto-play music on page load
-        window.addEventListener('load', function() {
-            const audio = document.getElementById('birthdayMusic');
-            const btn = document.getElementById('musicToggle');
-            
-            // Most browsers require user interaction before playing audio
-            // So we'll start with a click listener instead
-            setTimeout(() => {
                 audio.play().then(() => {
                     btn.textContent = '🔊 Music On';
                     btn.classList.add('playing');
                     musicPlaying = true;
                 }).catch(err => {
-                    btn.textContent = '🔊 Play Music';
-                    console.log('Autoplay blocked, user can click button to play');
+                    console.log('Play error:', err);
                 });
-            }, 500);
-        });
-
-        // Allow playing music on first user interaction
-        document.addEventListener('click', function initAudio() {
-            const audio = document.getElementById('birthdayMusic');
-            if (audio.paused) {
-                audio.play().catch(err => console.log('Play error:', err));
+            } else {
+                audio.pause();
+                btn.textContent = '🔇 Music Off';
+                btn.classList.remove('playing');
+                musicPlaying = false;
             }
-            document.removeEventListener('click', initAudio);
-        }, { once: true });
+        }
+
+        // Initialize button on page load
+        window.addEventListener('load', function() {
+            const btn = document.getElementById('musicToggle');
+            btn.textContent = '🔊 Play Music';
+            btn.title = 'Click to play music';
+        });
 
         function goToStage(stageNum) {
             document.querySelectorAll('.stage').forEach(s => s.classList.remove('active'));
