@@ -736,7 +736,7 @@
         <div class="container">
             <div class="welcome-screen">
                 <div style="text-align: right; margin-bottom: 20px;">
-                    <button id="musicToggle" class="music-btn" onclick="toggleMusic()">🔊 Music On</button>
+                    <!-- Music button removed -->
                 </div>
                 <div class="welcome-title">Happy Birthday, Bib! 💜</div>
                 <div class="welcome-subtitle">Our Journey Together</div>
@@ -1016,30 +1016,10 @@
         </div>
     </div>
 
-    <!-- Spotify Player for background music -->
-    <iframe id="spotifyPlayer" data-testid="embed-iframe" style="border-radius:12px; display:none;" src="https://open.spotify.com/embed/track/1wb4P4F0sxAQ2KXrRvsx6n?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    <!-- Music player removed -->
 
     <script>
-        function toggleMusic() {
-            const spotifyPlayer = document.getElementById('spotifyPlayer');
-            const btn = document.getElementById('musicToggle');
-            
-            if (spotifyPlayer.style.display === 'none') {
-                spotifyPlayer.style.display = 'block';
-                btn.textContent = '🔊 Music On';
-                btn.classList.add('playing');
-            } else {
-                spotifyPlayer.style.display = 'none';
-                btn.textContent = '🔇 Music Off';
-                btn.classList.remove('playing');
-            }
-        }
-
-        // Initialize on page load
-        window.addEventListener('load', function() {
-            const btn = document.getElementById('musicToggle');
-            btn.textContent = '🔇 Music Off';
-        });
+        // Music functionality removed
 
         function goToStage(stageNum) {
             document.querySelectorAll('.stage').forEach(s => s.classList.remove('active'));
