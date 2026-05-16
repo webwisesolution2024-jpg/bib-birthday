@@ -1016,41 +1016,29 @@
         </div>
     </div>
 
-    <!-- Audio for background music -->
-    <audio id="birthdayMusic" loop>
-        <source src="https://webwisesolution2024-jpg.github.io/bib-birthday/Shania_Twain_-_You_re_Still_The_One__SPOTISAVER_.mp3" type="audio/mpeg">
-    </audio>
+    <!-- Spotify Player for background music -->
+    <iframe style="border-radius:12px; display:none;" src="https://open.spotify.com/embed/track/1wb4P4F0sxAQ2KXrRvsx6n?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
 
     <script>
         function toggleMusic() {
-            const audio = document.getElementById('birthdayMusic');
+            const spotifyPlayer = document.querySelector('iframe[src*="spotify"]');
             const btn = document.getElementById('musicToggle');
             
-            if (audio.paused) {
-                // Play the music
-                let playPromise = audio.play();
-                if (playPromise !== undefined) {
-                    playPromise.then(() => {
-                        btn.textContent = '🔊 Music On';
-                        btn.classList.add('playing');
-                    }).catch(error => {
-                        console.error('Play error:', error);
-                        btn.textContent = '🔊 Play Music';
-                    });
-                }
+            if (spotifyPlayer.style.display === 'none') {
+                spotifyPlayer.style.display = 'block';
+                btn.textContent = '🔊 Music On';
+                btn.classList.add('playing');
             } else {
-                // Pause the music
-                audio.pause();
+                spotifyPlayer.style.display = 'none';
                 btn.textContent = '🔇 Music Off';
                 btn.classList.remove('playing');
             }
         }
 
-        // Initialize button on page load
+        // Initialize on page load
         window.addEventListener('load', function() {
             const btn = document.getElementById('musicToggle');
-            btn.textContent = '🔊 Play Music';
-            btn.title = 'Click to play music';
+            btn.textContent = '🔇 Music Off';
         });
 
         function goToStage(stageNum) {
